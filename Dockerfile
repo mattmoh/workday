@@ -14,4 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Specify the command to run the application
-CMD ["python", "workday_get_workers.py"]
+# CMD ["python", "workday_get_workers.py"]
+# CMD ["python", "workday_put_accounting_center_batch.py"]

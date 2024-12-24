@@ -11,6 +11,8 @@ services:
       - WORKDAY_USERNAME=${WORKDAY_USERNAME}
       - WORKDAY_PASSWORD=${WORKDAY_PASSWORD}
       - WORKDAY_TENANT=${WORKDAY_TENANT}
+      - ACCOUNTING_SOURCE=${ACCOUNTING_SOURCE}
     stdin_open: true
     tty: true
-    command: ["python", "workday_get_workers.py"]
+    # command: ["python", "workday_get_workers.py"]
+    command: ["python", "orchestrator.py"]

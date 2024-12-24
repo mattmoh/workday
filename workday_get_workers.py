@@ -9,18 +9,6 @@ from zeep.transports import Transport  # type: ignore
 from zeep.wsse.username import UsernameToken  # type: ignore
 from zeep.helpers import serialize_object # type: ignore
 
-#remove all files in the output directory
-def clean_output_dir():
-    import glob
-    output_dir = "/app/output"
-    files = glob.glob(os.path.join(output_dir, "*"))
-    for file in files:
-        try:
-            os.remove(file)
-            print(f"Deleted file: {file}")
-        except Exception as e:
-            print(f"Error deleting file {file}: {e}")
-
 # Load environment variables from .env file
 load_dotenv()
 tenant = os.getenv("WORKDAY_TENANT")
@@ -100,6 +88,3 @@ try:
         file.write(json.dumps(cleaned_response_data, indent=4, cls=CustomJSONEncoder))
 except Exception as e:
     print(f"Error occurred: {e}")
-user_input = input("Do you want to clean the output directory? (y/n): ")
-if user_input.lower() == 'y':
-    clean_output_dir()

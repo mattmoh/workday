@@ -14,6 +14,10 @@ Here is a space where I am building scripts to interact with your Workday tenant
 
 This script sends a SOAP request to your tenant to retrieve an employee's record. The response is written to an output directory, and you can optionally delete it after it is created. If you are set up with a GMS tenant, by default if no Employee ID is given, Logan McNeil's data is returned.
 
+### workday_put_accounting_center_batch
+
+This script send a SOAP request to submit an Accounting Center Batch.
+
 ## Installation
 
 To install the Workday Project, follow these steps:
@@ -38,7 +42,6 @@ To install the Workday Project, follow these steps:
 To start the application, run the docker container:
 
     docker-compose run --rm workday_api
-
     
 Then, follow prompts from the Terminal.
     
