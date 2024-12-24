@@ -1,0 +1,16 @@
+services:
+  workday_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: workday_api_container
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - WORKDAY_USERNAME=${WORKDAY_USERNAME}
+      - WORKDAY_PASSWORD=${WORKDAY_PASSWORD}
+      - WORKDAY_TENANT=${WORKDAY_TENANT}
+    stdin_open: true
+    tty: true
+    command: ["python", "workday_get_workers.py"]
