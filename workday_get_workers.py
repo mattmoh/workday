@@ -24,7 +24,7 @@ def clean_output_dir():
 # Load environment variables from .env file
 load_dotenv()
 tenant = os.getenv("WORKDAY_TENANT")
-username = os.getenv("WORKDAY_USERNAME")
+username = f'{os.getenv("WORKDAY_USERNAME")}@{tenant}'
 password = os.getenv("WORKDAY_PASSWORD")
 
 # Load other variables
@@ -42,6 +42,8 @@ transport = Transport(session=session)
 wsse = UsernameToken(username, password, use_digest=False)
 client = Client(wsdl=wsdl, transport=transport, wsse=wsse)
 
+employee_id = input("Employee ID: ") or "21001" # Logan McNeil's Employee ID
+
 # Request payload
 request_payload = {
     "Request_References": {
@@ -50,7 +52,7 @@ request_payload = {
                 "ID": [
                     {
                         "type": "Employee_ID",
-                        "_value_1": "21001"  # Logan McNeil's Employee ID
+                        "_value_1": employee_id  
                     }
                 ]
             }
@@ -90,6 +92,8 @@ try:
     serialized_data = serialize_object(response_data)
     cleaned_response_data = clean_response_data(serialized_data)
     request_timestamp = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+    if not os.path.exists("output"):
+        os.makedirs("output")
     with open(f"output/cleaned_response_data_{request_timestamp.replace(':','')}.txt", "w") as file:
         file.write(f"Request Date: {request_timestamp}\n\n")
         file.write(f"Response:\n\n")
