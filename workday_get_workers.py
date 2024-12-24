@@ -1,13 +1,13 @@
 import os
 import json
-import requests
+import requests # type: ignore
 from datetime import date, datetime
 from decimal import Decimal
-from dotenv import load_dotenv
-from zeep import Client
-from zeep.transports import Transport
-from zeep.wsse.username import UsernameToken
-from zeep.helpers import serialize_object
+from dotenv import load_dotenv  # type: ignore
+from zeep import Client  # type: ignore
+from zeep.transports import Transport  # type: ignore
+from zeep.wsse.username import UsernameToken  # type: ignore
+from zeep.helpers import serialize_object # type: ignore
 
 #remove all files in the output directory
 def clean_output_dir():
